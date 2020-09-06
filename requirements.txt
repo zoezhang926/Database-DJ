@@ -1,0 +1,8 @@
+flask
+passlib
+flask_mail
+flask_mysqldb
+wtforms
+bs4
+youtube-dl
+flask_debugtoolbar
