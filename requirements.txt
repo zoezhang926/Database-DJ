@@ -6,3 +6,4 @@ wtforms
 bs4
 youtube-dl
 flask_debugtoolbar
+flask-wtf
