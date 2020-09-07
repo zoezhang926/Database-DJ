@@ -1,17 +1,38 @@
-<!doctype html>
-<html>
-  <head>
-    {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>{% block title %}{% endblock %} Database DJ</title>
-    {% endblock %}
-  </head>
-  <body>
-    <div id="content">{% block content %}{% endblock %}</div>
-    <div id="footer">
-      {% block footer %}
-      &copy; Copyright 2020 by <a href="https://github.com/zoezhang926">Zoe Zhang</a>.
-      {% endblock %}
-    </div>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>
+    Database DJ &ndash; {% block title %}{% endblock %}
+  </title>
+  <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Database DJ</a>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      {% if 'username' in session %}
+      <a class="nav-link" href="/logout">Logout</a>
+      {% else %}
+      <a class="nav-link" href="/login">Login</a>
+      {% endif %}
+    </li>
+  </ul>
+</nav>
+
+<div class="container mt-5">
+  {% for msg in get_flashed_messages() %}
+  <div class="alert alert-info">{{ msg }}</div>
+  {% endfor %}
+
+  {% block content %}
+  <!-- put the content here -->
+  {% endblock %}
+</div>
+
+</body>
 </html>

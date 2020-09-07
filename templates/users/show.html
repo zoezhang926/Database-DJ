@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.full_name }}{% endblock %}}
+
+{% block content %}
+
+<div class="row">
+
+  <div class="col-sm-10 col-12">
+
+    <h2 class="mt-4">Song List</h2>
+
+    <ul>
+      {% for song in user.song %}
+      <table style="width:100%">
+        <tr>
+          <th>Cover</th>
+          <th>Title</th>
+          <th>Link</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        <tr>
+          <td><img src="{{ song.cover }}" style="max-width: 50px; max-height: 50px;"></td>
+          <td>{{ song.title }}</td>
+          <td>{{ song.link }}</td>
+          <td>
+            <a class="btn btn-sm btn-info" href="/song/{{song.id}}/update">Update</a>
+          </td>
+          <td>
+            <form>
+              {{form.hidden_tag()}}
+              <button class="btn btn-primary"
+              formmethod="POST"
+              formaction="/song/{{ song.id }}/delete">
+              Delete
+              </button>
+            </form>
+          </td>
+        </tr>
+      </table>
+      {% endfor %}
+    </ul>
+
+    <p>
+      <a href="/users/{{ user.username }}/song/new" class="btn btn-primary">
+        Add a song
+      </a>
+    </p>
+
+    <form>
+      <button class="btn btn-danger btn-sm"
+              formaction="/users/{{ user.username }}/delete"
+              formmethod="POST">
+        Delete User
+      </button>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
